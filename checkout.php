@@ -10,247 +10,172 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" href="<?= SERVERURL ?>view/newtienda/img/logo.svg">
-    <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
-
-    <link rel="stylesheet" type="text/css" href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick-theme.min.css" />
-
-    <link href="<?= SERVERURL ?>view/newtienda/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
-
-    <link href="<?= SERVERURL ?>view/newtienda/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="<?= SERVERURL ?>view/newtienda/css/style.css" rel="stylesheet">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title><?=SISTEMA_NOMBRE?> - CheckOut </title>
+    <link href="<?=SERVERURL;?>view/assets/assets/img/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/fonts/Linearicons/Linearicons/Font/demo-files/demo.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/owl-carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/owl-carousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/slick/slick/slick.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/nouislider/nouislider.min.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/lightGallery-master/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/css/style.css">
     <link rel="stylesheet" href="<?=SERVERURL?>view/tienda/assets/plugins/toastr/toastr.css">
+    <link rel="manifest" href="<?=SERVERURL;?>manifest.json">
+  </head>
+  <body>
+    <?php
+        require "view/tienda/components/navbar.php";
+    ?>
 
-    <link href="<?= SERVERURL ?>view/newtienda/vendor/sidebar/demo.css" rel="stylesheet">
-</head>
 
-<body class="fixed-bottom-padding">
-    <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-            <i class="icofont-moon"></i>
-        </label>
-        <em>Enable Dark Mode!</em>
-    </div>
-    <div class="osahan-checkout">
-        <div class="p-3 border-bottom">
-            <div class="d-flex align-items-center">
-                <a class="font-weight-bold text-success text-decoration-none" href="<?=SERVERURL?>tienda/cart/">
-                    <i class="icofont-rounded-left back-page"></i></a>
-                <h6 class="font-weight-bold m-0 ml-3">Checkout</h6>
-                <a class="toggle ml-auto" href="#"><i class="icofont-navigation-menu"></i></a>
-            </div>
+    <div class="ps-page--simple">
+      <div class="ps-breadcrumb">
+        <div class="container">
+          <ul class="breadcrumb">
+            <li><a href="<?=SERVERURL?>tienda/online/">Inicio</a></li>
+            <li>Verificar Pedido</li>
+          </ul>
         </div>
-    </div>
-    <div class="address p-3 bg-white">
-        <h6 class="m-0 text-dark d-flex align-items-center">Correo Electronico </h6>
-    </div>
-    <div class="p-3">
-        <div class="form-group__content">
-            <input id="correo_chek" class="form-control"disabled  value='<?=$cliente["CORREO"]?>' type="email">
-        </div>
-    </div>
-    <div class="address p-3 bg-white">
-        <h6 class="m-0 text-dark d-flex align-items-center">Direcciones </h6>
-    </div>
-    <div class="p-3">
-        <select name="lista_direccion_option" id="lista_direccion_option"  class="form-control">
+      </div>
+      <div class="ps-checkout ps-section--shopping">
+        <div class="container">
+          <div class="ps-section__header">
+            <h1>Verficar Pedido</h1>
+          </div>
+          <div class="ps-section__content">
+            <form class="ps-form--checkout" action="do_action" method="post">
+              <div class="row">
+                            <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12  ">
+                              <div class="ps-form__billing-info">
+                                <h3 class="ps-form__heading">Detalles de facturación</h3>
+                                      <div class="form-group">
+                                        <label>Nombre Completo <sup>*</sup>
+                                        </label>
+                                        <div class="form-group__content">
+                                          <input id="nombre_chek" class="form-control" disabled value='<?=$cliente["NOMBRE"]?>' type="text">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label>Correo Electronico<sup>*</sup>
+                                        </label>
+                                        <div class="form-group__content">
+                                          <input id="correo_chek" class="form-control"disabled  value='<?=$cliente["CORREO"]?>' type="email">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label>Departamento<sup>*</sup>
+                                        </label>
+                                        <div class="form-group__content">
+                                          <select name="departamento" id="departamento" class="form-control">
+                                            <?=$this->lista_departamentos?>    
+                                          </select>                                        
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label>Provincia<sup>*</sup>
+                                        </label>
+                                        <div class="form-group__content">
+                                          <select name="provincia" id="provincia" disabled class="form-control">
                                              
-        </select> 
-    </div>
-    <div class="address p-3 bg-white">
-        <h6 class="m-0 text-dark d-flex align-items-center">Departamento </h6>
-    </div>
-    <div class="p-3">
-        <div class="form-group__content">
-            <select name="departamento" id="departamento" class="form-control">
-            <?=$this->lista_departamentos?>    
-            </select>                                        
+                                          </select>                                        
+                                                                                
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label>Dirección<sup>*</sup>
+                                        </label>
+                                        <select name="lista_direccion_option" id="lista_direccion_option"  class="form-control">
+                                             
+                                             </select> 
+                                      </div>
+                                      <div class="form-group">
+                                        <label>Telefono<sup>*</sup>
+                                        </label>
+                                        <div class="form-group__content">
+                                          <input id="telefono_chek" class="form-control" disabled value='<?=$cliente["TELEFONO"]?>' type="text">
+                                        </div>
+                                      </div>
+                                      
+                               
+                                <h3 class="mt-40"> Información Adicional</h3>
+                                <div class="form-group">
+                                  
+                                  <div class="form-group__content">
+                                    <textarea class="form-control" rows="7" id="info_check" placeholder="Notas sobre su pedido, p. Ej. notas especiales para la entrega."></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-xl-5 col-lg-4 col-md-12 col-sm-12  ">
+                              <div class="ps-form__total">
+                                <h3 class="ps-form__heading">Tu Pedido</h3>
+                                <div class="content">
+                                  <div class="ps-block--checkout-total">
+                                    <div class="ps-block__header">
+                                      <p>Productos</p>
+                                    </div>
+                                    <div class="ps-block__content">
+                                      <table class="table ps-block__products">
+                                        <tbody id="tb_productos_pedido">
+                                          
+                                        </tbody>
+                                      </table>
+                                      <h4 class="ps-block__title">Subtotal <?=$this->moneda?> <span id="subtotal_pedido">0.00</span></h4>
+                                      <hr>
+                                      <input type="hidden" value="0" id="costo_tarifa">
+                                      <input type="hidden" name="" id="id_provincia">
+                                      <h4 class="ps-block__title">Costo de Envío <?=$this->moneda?> <span id="subtotal_envio">0.00</span></h4>
+                                      <hr>
+                                      <h3>Total <?=$this->moneda?> <span id="total_pedido">0.00</span></h3>
+                                    </div>
+                                  </div><a class="ps-btn ps-btn--fullwidth" id="btn_verificacion" href="javascript:void(0)">Procesar verificacíon</a>
+                                </div>
+                              </div>
+                            </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="address p-3 bg-white">
-        <h6 class="m-0 text-dark d-flex align-items-center">Provincia </h6>
-    </div>
-    <div class="p-3">
-        <div class="form-group__content">
-            <select name="provincia" id="provincia" disabled class="form-control">
-                
-            </select>                                        
-                                                
-        </div>
-    </div>
-    <div class="address p-3 bg-white">
-        <h6 class="m-0 text-dark">Metodo de pago</h6>
-    </div>
-    <div class="p-3">
-        <a href="#" class="text-success text-decoration-none w-100">
-            <div class="d-flex align-items-center">
-                <i class="icofont-credit-card"></i> <span class="ml-3">Deposio bancario</span> <i class="icofont-rounded-right ml-auto"></i>
-            </div>
-        </a>
-    </div>
-
-    <div class="address p-3 bg-white">
-        <h6 class="text-dark m-0">Total</h6>
-    </div>
-    <div class="p-3">
-        <div class="clearfix">
-            <input type="hidden" value="0" id="costo_tarifa">
-            <input type="hidden" name="" id="id_provincia">
-            <p class="mb-1 text-muted">Items Total <span class="float-right text-dark" id="subtotal_pedido">0</span></p>
-            <p class="mb-1 text-muted">Monto de envio <span class="float-right text-dark" id="subtotal_envio">0</span></p>
-            <hr>
-            <h6 class="font-weight-bold mb-0">TOTAL A PAGAR <span class="float-right" id="total_pedido">0</span></h6>
-        </div>
-    </div>
-
-    <div class="fixed-bottom">
-        <a href="javascript:void(0)" class="btn btn-success btn-block" id="btn_verificacion" >Realizar pedido</a>
-    </div>
-    <nav id="main-nav">
-        <ul class="second-nav">
-            <li><a href="index.html"><i class="icofont-smart-phone mr-2"></i> Splash</a></li>
-            <li>
-                <a href="#"><i class="icofont-login mr-2"></i> Authentication</a>
-                <ul>
-                    <li> <a href="account-setup.html">Account Setup</a></li>
-                    <li><a href="signin.html">Sign in</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
-                    <li><a href="verification.html">Verification</a></li>
-                </ul>
-            </li>
-            <li><a href="get_started.html"><i class="icofont-check-circled mr-2"></i> Get Started</a></li>
-            <li><a href="landing.html"><i class="icofont-paper-plane mr-2"></i> Landing</a></li>
-            <li><a href="home.html"><i class="icofont-ui-home mr-2"></i> Homepage</a></li>
-            <li><a href="notification.html"><i class="icofont-notification mr-2"></i> Notification</a></li>
-            <li><a href="search.html"><i class="icofont-search-1 mr-2"></i> Search</a></li>
-            <li><a href="listing.html"><i class="icofont-list mr-2"></i> Listing</a></li>
-            <li><a href="picks_today.html"><i class="icofont-flash mr-2"></i> Trending</a></li>
-            <li><a href="recommend.html"><i class="icofont-like mr-2"></i> Recommend</a></li>
-            <li><a href="fresh_vegan.html"><i class="icofont-badge mr-2"></i> Most Popular</a></li>
-            <li><a href="product_details.html"><i class="icofont-search-document mr-2"></i> Product Details</a></li>
-            <li><a href="cart.html"><i class="icofont-cart mr-2"></i> Cart</a></li>
-            <li><a href="order_address.html"><i class="icofont-location-pin mr-2"></i> Order Address</a></li>
-            <li><a href="delivery_time.html"><i class="icofont-ui-calendar mr-2"></i> Delivery Time</a></li>
-            <li><a href="order_payment.html"><i class="icofont-money mr-2"></i> Order Payment</a></li>
-            <li><a href="checkout.html"><i class="icofont-checked mr-2"></i> Checkout</a></li>
-            <li><a href="successful.html"><i class="icofont-gift mr-2"></i> Successful</a></li>
-            <li>
-                <a href="#"><i class="icofont-sub-listing mr-2"></i> My Order</a>
-                <ul>
-                    <li><a href="complete_order.html">Complete Order</a></li>
-                    <li><a href="status_complete.html">Status Complete</a></li>
-                    <li><a href="progress_order.html">Progress Order</a></li>
-                    <li><a href="status_onprocess.html">Status on Process</a></li>
-                    <li><a href="canceled_order.html">Canceled Order</a></li>
-                    <li><a href="status_canceled.html">Status Canceled</a></li>
-                    <li><a href="review.html">Review</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="icofont-ui-user mr-2"></i> My Account</a>
-                <ul>
-                    <li> <a href="my_account.html">My Account</a></li>
-                    <li><a href="edit_profile.html">Edit Profile</a></li>
-                    <li><a href="change_password.html">Change Password</a></li>
-                    <li><a href="deactivate_account.html">Deactivate Account</a></li>
-                    <li><a href="my_address.html">My Address</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="icofont-page mr-2"></i> Pages</a>
-                <ul>
-                    <li> <a href="promos.html">Promos</a></li>
-                    <li><a href="promo_details.html">Promo Details</a></li>
-                    <li><a href="terms_conditions.html">Terms & Conditions</a></li>
-                    <li><a href="privacy.html">Privacy</a></li>
-                    <li><a href="terms&conditions.html">Conditions</a></li>
-                    <li> <a href="help_support.html">Help Support</a></li>
-                    <li> <a href="help_ticket.html">Help Ticket</a></li>
-                    <li> <a href="refund_payment.html">Refund Payment</a></li>
-                    <li> <a href="faq.html">FAQ</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="icofont-link mr-2"></i> Navigation Link Example</a>
-                <ul>
-                    <li>
-                        <a href="#">Link Example 1</a>
-                        <ul>
-                            <li>
-                                <a href="#">Link Example 1.1</a>
-                                <ul>
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Link Example 1.2</a>
-                                <ul>
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Link Example 2</a></li>
-                    <li><a href="#">Link Example 3</a></li>
-                    <li><a href="#">Link Example 4</a></li>
-                    <li data-nav-custom-content>
-                        <div class="custom-message">
-                            You can add any custom content to your navigation items. This text is just an example.
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <ul class="bottom-nav">
-            <li class="email">
-                <a class="text-success" href="home.html">
-                    <p class="h5 m-0"><i class="icofont-home text-success"></i></p>
-                    Home
-                </a>
-            </li>
-            <li class="github">
-                <a href="cart.html">
-                    <p class="h5 m-0"><i class="icofont-cart"></i></p>
-                    CART
-                </a>
-            </li>
-            <li class="ko-fi">
-                <a href="help_ticket.html">
-                    <p class="h5 m-0"><i class="icofont-headphone"></i></p>
-                    Help
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/jquery/jquery.min.js"></script>
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.js"></script>
-
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/sidebar/hc-offcanvas-nav.js"></script>
-
-    <script src="<?= SERVERURL ?>view/newtienda/js/osahan.js"></script>
+    <!--include ../../partials/sections/newsletter-->
+    <!--include ../../shared/footers/footer-->
+    
+    
+    <?php
+      require("view/tienda/components/footer.php");
+    ?>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/jquery.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/nouislider/nouislider.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/popper.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/masonry.pkgd.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/isotope.pkgd.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/jquery.matchHeight-min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/slick/slick/slick.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/slick-animation.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+    <script src="<?=SERVERURL?>view/tienda/assets/plugins/select2/dist/js/select2.full.min.js"></script>
     <script src="<?=SERVERURL?>view/tienda/assets/plugins/toastr/toastr.min.js"></script>
-
-    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="52f3f8a7d4c689c9c144721c-|49" defer=""></script>
+    <!-- custom scripts-->
+    <script src="<?=SERVERURL?>view/tienda/assets/js/main.js"></script>
     <script>    
         let carrito = {};
         let pedido_cliente = {};
@@ -290,32 +215,8 @@
             let template = '';
             let sub_total = 0;
             carrito.forEach(task => {
-                let cantidad = parseFloat(task.cantidad);
-
-                let select_1 = '';
-                let precio = parseFloat(task.precio);
-                if(task.PRECIO_ACTIVO == 1 || task.PRECIO_ACTIVO == "1"){
-                    select_1 = 'selected';
-                    precio = parseFloat(task.PRECIO_VENTA_1);
-                }
-                let select_2 = '';
-                if(task.PRECIO_ACTIVO == 2 || task.PRECIO_ACTIVO == "2"){
-                    select_2 = 'selected';
-                    precio = parseFloat(task.PRECIO_VENTA_2);
-        
-                }
-                let select_3 = '';
-                if(task.PRECIO_ACTIVO == 3 || task.PRECIO_ACTIVO == "3"){
-                    select_3 = 'selected';
-                    precio = parseFloat(task.PRECIO_VENTA_3);
-                }
-                let select_4 = '';
-                if(task.PRECIO_ACTIVO == 4 || task.PRECIO_ACTIVO == "4"){
-                    select_4 = 'selected';
-                    precio = parseFloat(task.PRECIO_VENTA_4);
-                }
-        
-
+            let cantidad = parseFloat(task.cantidad);
+            let precio =  parseFloat(task.precio);
             sub_total += cantidad*precio;
             template += `
                     <div class="ps-product--cart-mobile">
@@ -360,28 +261,7 @@
             let sub_total = 0;
             carrito.forEach(task => {
             let cantidad = parseFloat(task.cantidad);
-            let precio = parseFloat(task.precio);
-            if(task.PRECIO_ACTIVO == 1){
-                select_1 = 'selected';
-                precio = parseFloat(task.PRECIO_VENTA_1);
-            }
-            let select_2 = '';
-            if(task.PRECIO_ACTIVO == 2){
-                select_2 = 'selected';
-                precio = parseFloat(task.PRECIO_VENTA_2);
-    
-            }
-            let select_3 = '';
-            if(task.PRECIO_ACTIVO == 3){
-                select_3 = 'selected';
-                precio = parseFloat(task.PRECIO_VENTA_3);
-            }
-            let select_4 = '';
-            if(task.PRECIO_ACTIVO == 4){
-                select_4 = 'selected';
-                precio = parseFloat(task.PRECIO_VENTA_4);
-            }
-       
+            let precio =  parseFloat(task.precio);
             sub_total += cantidad*precio;
             template += `
                     <tr>
@@ -445,17 +325,7 @@
                     'info_check' :info_check
                 }
                 localStorage.setItem("cliente_pedido", JSON.stringify(pedido));
-                let carrito = JSON.parse(localStorage.getItem('carrito'));
-                let cliente_pedido = JSON.parse(localStorage.getItem('cliente_pedido'));
-                $.post("<?=SERVERURL?>tienda/guardar_invoice/",{carrito,cliente_pedido},function(res){
-                    if(res==1){
-                        localStorage.setItem("carrito", JSON.stringify([]));
-                        location.href = "<?=SERVERURL?>tienda/success/";
-                    }else{
-                        alert("No se pudo registrar tu pedido");
-                    
-                    }
-                });
+                location.href = "<?=SERVERURL?>tienda/shipping/";
               }
 
             }
@@ -511,6 +381,5 @@
         }
       });
     </script>
-</body>
-
+  </body>
 </html>
