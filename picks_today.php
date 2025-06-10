@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="<?= SERVERURL ?>view/newtienda/img/logo.svg">
     <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
 
-    <link href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick-theme.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick-theme.min.css" />
 
     <link href="<?= SERVERURL ?>view/newtienda/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
 
@@ -22,11 +22,50 @@
 </head>
 
 <body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+            <i class="icofont-moon"></i>
+        </label>
+        <em>Enable Dark Mode!</em>
+    </div>
+    <div class="picks-today">
+        <div class="p-3 border-bottom">
+            <div class="d-flex align-items-center">
+                <a class="font-weight-bold text-success text-decoration-none" href="<?= SERVERURL ?>tienda/grocery/">
+                    <i class="icofont-rounded-left back-page"></i></a>
+                <span class="font-weight-bold ml-3 h6 mb-0">Eligir Hoy</span>
+                <a class="toggle ml-auto" href="#"><i class="icofont-navigation-menu"></i></a>
+            </div>
+        </div>
 
-    <div class="osahan-index">
-        <div class="bg-success d-flex align-items-center justify-content-center vh-100">
-            <a href="account-setup.html"><img class="index-osahan-logo" src="img/logo.svg" alt="">
-            </a>
+        <div class="pick_today px-3 pb-3">
+        <div class="row">
+                <?php
+                    $items = $this->productos;
+                    foreach($items as $i){
+                        echo "<div class='col-6 col-sm-3 px-2 py-2'>
+                        <div class='list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm'>
+                            <div class='list-card-image'>
+                                <a href='product_details.html' class='text-dark'>
+                                    <div class='member-plan position-absolute'><span class='badge m-3 badge-danger'>10%</span></div>
+                                    <div class='p-3'>
+                                        <img src='".SERVERURL."archives/assets/productos/{$i["IMAGEN"]}' class='img-fluid item-img w-100 mb-3'>
+                                        <h6>{$i["ARTICULO"]}</h6>
+                                        <div class='d-flex align-items-center'>
+                                            <h6 class='price m-0 text-success'>$0.8/kg</h6>
+                                            <a href='cart.html' class='btn btn-success btn-sm ml-auto'>+</a>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>";
+                        
+                    }
+                ?>
+                </div>
         </div>
     </div>
     <nav id="main-nav">
@@ -153,15 +192,15 @@
         </ul>
     </nav>
 
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/jquery/jquery.min.js" type="0167730e80b57c34a404ef33-text/javascript"></script>
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/bootstrap/js/bootstrap.bundle.min.js" type="0167730e80b57c34a404ef33-text/javascript"></script>
+    <script src="<?= SERVERURL ?>view/newtienda/vendor/jquery/jquery.min.js" type="a973643ad4fc012918a4a9ec-text/javascript"></script>
+    <script src="<?= SERVERURL ?>view/newtienda/vendor/bootstrap/js/bootstrap.bundle.min.js" type="a973643ad4fc012918a4a9ec-text/javascript"></script>
 
-    <script type="0167730e80b57c34a404ef33-text/javascript" src="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.js"></script>
+    <script type="a973643ad4fc012918a4a9ec-text/javascript" src="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.js"></script>
 
-    <script type="0167730e80b57c34a404ef33-text/javascript" src="<?= SERVERURL ?>view/newtienda/vendor/sidebar/hc-offcanvas-nav.js"></script>
+    <script type="a973643ad4fc012918a4a9ec-text/javascript" src="<?= SERVERURL ?>view/newtienda/vendor/sidebar/hc-offcanvas-nav.js"></script>
 
-    <script src="<?= SERVERURL ?>view/newtienda/js/osahan.js" type="0167730e80b57c34a404ef33-text/javascript"></script>
-    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="0167730e80b57c34a404ef33-|49" defer=""></script>
+    <script src="<?= SERVERURL ?>view/newtienda/js/osahan.js" type="a973643ad4fc012918a4a9ec-text/javascript"></script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="a973643ad4fc012918a4a9ec-|49" defer=""></script>
 </body>
 
 </html>

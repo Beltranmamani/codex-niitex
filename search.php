@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="<?= SERVERURL ?>view/newtienda/img/logo.svg">
     <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
 
-    <link href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick-theme.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick-theme.min.css" />
 
     <link href="<?= SERVERURL ?>view/newtienda/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
 
@@ -22,12 +22,31 @@
 </head>
 
 <body>
-
-    <div class="osahan-index">
-        <div class="bg-success d-flex align-items-center justify-content-center vh-100">
-            <a href="account-setup.html"><img class="index-osahan-logo" src="img/logo.svg" alt="">
-            </a>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+            <i class="icofont-moon"></i>
+        </label>
+        <em>Enable Dark Mode!</em>
+    </div>
+    <div class="osahan-search">
+        <div class="p-3 border-bottom">
+            <div class="d-flex align-items-center">
+                <a class="font-weight-bold text-success text-decoration-none" href="home.html">
+                    <i class="icofont-rounded-left back-page"></i></a>
+                <div class="input-group ml-3 rounded shadow-sm overflow-hidden bg-white">
+                    <div class="input-group-prepend">
+                        <button class="border-0 btn btn-outline-secondary text-success bg-white"><i class="icofont-search"></i></button>
+                    </div>
+                    <input type="text" class="txtbuscar_producto shadow-none border-0 form-control pl-0" placeholder="Buscar..." aria-label="" aria-describedby="basic-addon1" value="">
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="nodos_productos_search">
+        <?=$this->lista_buscar_productos?>
+
     </div>
     <nav id="main-nav">
         <ul class="second-nav">
@@ -153,15 +172,37 @@
         </ul>
     </nav>
 
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/jquery/jquery.min.js" type="0167730e80b57c34a404ef33-text/javascript"></script>
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/bootstrap/js/bootstrap.bundle.min.js" type="0167730e80b57c34a404ef33-text/javascript"></script>
+    <script src="<?= SERVERURL ?>view/newtienda/vendor/jquery/jquery.min.js" ></script>
+    <script src="<?= SERVERURL ?>view/newtienda/vendor/bootstrap/js/bootstrap.bundle.min.js" ></script>
 
-    <script type="0167730e80b57c34a404ef33-text/javascript" src="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.js"></script>
+    <script  src="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.js"></script>
 
-    <script type="0167730e80b57c34a404ef33-text/javascript" src="<?= SERVERURL ?>view/newtienda/vendor/sidebar/hc-offcanvas-nav.js"></script>
+    <script  src="<?= SERVERURL ?>view/newtienda/vendor/sidebar/hc-offcanvas-nav.js"></script>
 
-    <script src="<?= SERVERURL ?>view/newtienda/js/osahan.js" type="0167730e80b57c34a404ef33-text/javascript"></script>
-    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="0167730e80b57c34a404ef33-|49" defer=""></script>
+    <script src="<?= SERVERURL ?>view/newtienda/js/osahan.js" ></script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="b3fdc0613836a32fc257af08-|49" defer=""></script>
+    <script>
+
+         $(document).on('input','.txtbuscar_producto',function(){
+            let valor = $(this).val();
+            let elementos = document.querySelectorAll('.nodos_productos_search .ps-product--search-result');
+            if(elementos.length>0){
+                for (let i = 1; i <= elementos.length; i++) {
+                    let articulo = $('.nodos_productos_search .ps-product--search-result:nth-child('+i+')').attr('articulo');
+                    let precio = $('.nodos_productos_search .ps-product--search-result:nth-child('+i+')').attr('articulo');
+                    articulo = articulo.toLowerCase();
+                    valor = valor.toLowerCase();
+                    if(articulo.indexOf(valor)>-1 || precio.indexOf(valor)>-1){
+                    $('.nodos_productos_search .ps-product--search-result:nth-child('+i+')').show();
+
+                    }else{
+                    $('.nodos_productos_search .ps-product--search-result:nth-child('+i+')').hide();
+                    }
+
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,3 +1,11 @@
+<?php 
+    session_name('BOL_TIENDA');
+    session_start();
+    if(!isset($_SESSION["usuario"])){
+        echo '<script> window.location.href="'.SERVERURL.'tienda/login/" ;</script>';
+    }
+    $cliente = mainModel::parametros_cliente_tienda($_SESSION["usuario"]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +17,8 @@
     <link rel="icon" type="image/png" href="<?= SERVERURL ?>view/newtienda/img/logo.svg">
     <title>Grofar - Online Grocery Supermarket HTML Mobile Template</title>
 
-    <link href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick-theme.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?= SERVERURL ?>view/newtienda/vendor/slick/slick-theme.min.css" />
 
     <link href="<?= SERVERURL ?>view/newtienda/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
 
@@ -21,11 +29,64 @@
     <link href="<?= SERVERURL ?>view/newtienda/vendor/sidebar/demo.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="fixed-bottom-padding">
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+            <i class="icofont-moon"></i>
+        </label>
+        <em>Enable Dark Mode!</em>
+    </div>
+    <div class="osahan-account">
+        <div class="p-3 border-bottom">
+            <div class="d-flex align-items-center">
+                <h5 class="font-weight-bold m-0">Mi cuenta</h5>
+                <a class="toggle ml-auto" href="#"><i class="icofont-navigation-menu"></i></a>
+            </div>
+        </div>
+        <div class="p-4 profile text-center border-bottom">
+            <img src="<?= SERVERURL ?>archives/avatars/sin_perfil.png" class="img-fluid rounded-pill">
+            <h6 class="font-weight-bold m-0 mt-2"><?=$cliente["NOMBRE"]?></h6>
+            <p class="small text-muted"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="442d25292b37252c252a042329252d286a272b29"></a></p>
+            <a href="<?= SERVERURL ?>tienda/editprofile/" class="btn btn-success btn-sm"><i class="icofont-pencil-alt-5"></i> Editar Perfil</a>
+        </div>
+        <div class="account-sections">
+            <ul class="list-group">
 
-    <div class="osahan-index">
-        <div class="bg-success d-flex align-items-center justify-content-center vh-100">
-            <a href="account-setup.html"><img class="index-osahan-logo" src="img/logo.svg" alt="">
+                <a href="<?= SERVERURL ?>tienda/direcciones/" class="text-decoration-none text-dark">
+                    <li class="border-bottom bg-white d-flex align-items-center p-3">
+                        <i class="icofont-address-book osahan-icofont bg-dark"></i>Mis direcciones
+                        <span class="badge badge-success p-1 badge-pill ml-auto"><i class="icofont-simple-right"></i></span>
+                    </li>
+                </a>
+
+                <a href="<?= SERVERURL ?>tienda/cerrar_sesion/" class="text-decoration-none text-dark">
+                    <li class="border-bottom bg-white d-flex  align-items-center p-3">
+                        <i class="icofont-lock osahan-icofont bg-danger"></i> Logout
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="osahan-menu-fotter fixed-bottom bg-white text-center border-top">
+        <div class="row m-0">
+        <a href="<?=SERVERURL?>tienda/grocery/" class="text-muted col small text-decoration-none p-2">
+                <p class="h5 m-0"><i class="icofont-grocery"></i></p>
+               Tienda
+            </a>
+            <a href="<?=SERVERURL?>tienda/cart/" class="text-muted col small text-decoration-none p-2">
+                <p class="h5 m-0"><i class="icofont-cart"></i></p>
+                Carrito
+            </a>
+            <a href="<?=SERVERURL?>tienda/pedidos/" class="text-muted col small text-decoration-none p-2">
+                <p class="h5 m-0"><i class="icofont-bag"></i></p>
+                Pedidos
+            </a>
+            <a href="javascript:void(0)" class="ttext-dark small col font-weight-bold text-decoration-none p-2 selected">
+                <p class="h5 m-0"><i class="text-success icofont-user"></i></p>
+                Cuenta
             </a>
         </div>
     </div>
@@ -153,15 +214,16 @@
         </ul>
     </nav>
 
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/jquery/jquery.min.js" type="0167730e80b57c34a404ef33-text/javascript"></script>
-    <script src="<?= SERVERURL ?>view/newtienda/vendor/bootstrap/js/bootstrap.bundle.min.js" type="0167730e80b57c34a404ef33-text/javascript"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js" ></script>
+    <script src="<?= SERVERURL ?>view/newtienda/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script type="0167730e80b57c34a404ef33-text/javascript" src="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.js"></script>
+    <script  src="<?= SERVERURL ?>view/newtienda/vendor/slick/slick.min.js"></script>
 
-    <script type="0167730e80b57c34a404ef33-text/javascript" src="<?= SERVERURL ?>view/newtienda/vendor/sidebar/hc-offcanvas-nav.js"></script>
+    <script src="<?= SERVERURL ?>view/newtienda/vendor/sidebar/hc-offcanvas-nav.js"></script>
 
-    <script src="<?= SERVERURL ?>view/newtienda/js/osahan.js" type="0167730e80b57c34a404ef33-text/javascript"></script>
-    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="0167730e80b57c34a404ef33-|49" defer=""></script>
+    <script src="<?= SERVERURL ?>view/newtienda/js/osahan.js"></script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="0458fc15a26c8179ffdb7fab-|49" defer=""></script>
 </body>
 
 </html>
